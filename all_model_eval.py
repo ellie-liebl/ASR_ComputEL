@@ -27,7 +27,7 @@ for m in hsb_models:
         device=device
     )
 
-    eval_df = pd.read_pickle("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/hsb_test.tsv")
+    eval_df = pd.read_csv("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/hsb_test.tsv", sep="\t")
 
     preds =[]
     golds = []
@@ -45,7 +45,7 @@ for m in hsb_models:
 
     eval_df["Prediction"] = preds
     eval_df["CER scores"] = cers
-    eval_df.to_csv("/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_hsb.tsv", sep="\t", index=False)
+    eval_df.to_csv(f"/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_hsb.tsv", sep="\t", index=False)
 
 for m in lg_models:
     MODEL_DIR = f"/scratch/jliebl/ASR_ComputEL/Models/{m}"
@@ -59,7 +59,7 @@ for m in lg_models:
         device=device
     )
 
-    eval_df = pd.read_pickle("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/lg_test.tsv")
+    eval_df = pd.read_csv("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/lg_test.tsv", sep="\t")
 
     preds =[]
     golds = []
@@ -77,7 +77,7 @@ for m in lg_models:
 
     eval_df["Prediction"] = preds
     eval_df["CER scores"] = cers
-    eval_df.to_csv("/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_lg.tsv", sep="\t", index=False)
+    eval_df.to_csv(f"/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_lg.tsv", sep="\t", index=False)
 
 for m in tt_models:
     MODEL_DIR = f"/scratch/jliebl/ASR_ComputEL/Models/{m}"
@@ -91,7 +91,7 @@ for m in tt_models:
         device=device
     )
 
-    eval_df = pd.read_pickle("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/tt_test.tsv")
+    eval_df = pd.read_csv("/scratch/jliebl/ASR_ComputEL/CV_VC_Data/Dataframes/test/tt_test.tsv", sep="\t")
 
     preds =[]
     golds = []
@@ -109,5 +109,5 @@ for m in tt_models:
 
     eval_df["Prediction"] = preds
     eval_df["CER scores"] = cers
-    eval_df.to_csv("/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_tt.tsv", sep="\t", index=False)
+    eval_df.to_csv(f"/scratch/jliebl/ASR_ComputEL/Results/{m}_eval_results_tt.tsv", sep="\t", index=False)
 
