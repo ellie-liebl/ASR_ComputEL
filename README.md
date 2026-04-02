@@ -56,21 +56,12 @@ A recommended organization for GitHub is:
 ```text
 .
 ├── README.md
-├── requirements.txt
-├── environment.yml
-├── data/
-│   ├── metadata/
-│   ├── raw/
-│   ├── interim/
-│   ├── processed/
-│   └── results/
 ├── scripts/
 │   ├── metadata/
 │   │   ├── get_ids.py
 │   │   ├── data_extraction.py
 │   │   ├── collapse_phoible.py
 │   │   ├── count_textgrids.py
-│   │   ├── get_training_langs.py
 │   │   ├── get_training_langs_gptedit.py
 │   │   └── get_phoible_bib.py
 │   ├── data_prep/
@@ -90,10 +81,7 @@ A recommended organization for GitHub is:
 │   │   └── result_analysis.py
 │   └── stats/
 │       └── regression_model.R
-└── docs/
-```
 
-If you upload the code in a different structure, update the paths in the script documentation below accordingly.
 
 ---
 
@@ -354,23 +342,6 @@ Counts `.TextGrid` files in VoxCommunis zip archives without fully extracting th
 
 **Role**  
 Auxiliary corpus-inspection script for estimating TextGrid coverage.
-
----
-
-### `get_training_langs.py`
-
-**Purpose**  
-Earlier version of the language-ranking script.
-
-**Inputs**
-- `rel_langs_full_df.tsv`
-- `collapsed_rel_langs_phoible_inventories.tsv`
-
-**Outputs**
-- printed candidate rankings
-
-**Role**  
-Prototype or earlier analysis version. Largely superseded by `get_training_langs_gptedit.py`.
 
 ---
 
@@ -696,18 +667,6 @@ Fits the inferential mixed-effects model for CER outcomes.
 
 **Role**  
 Final inferential analysis used in the paper.
-
----
-
-## Legacy script
-
-### `mipa_vocab_builder.py`
-
-**Purpose**  
-Older standalone vocabulary builder from an earlier project.
-
-**Role**  
-Retained for reference. Not part of the main pipeline used here.
 
 ---
 
