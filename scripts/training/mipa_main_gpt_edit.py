@@ -56,7 +56,13 @@ print("TRANSFORMERS VERSION:", transformers.__version__)
 print("TRANSFORMERS LOCATION:", transformers.__file__)
 
 # Need this 
-def build_vocab_from_dataset(train_ds, test_ds, output_path="/scratch/jliebl/Phonetics/out/vocab.json"):
+def build_vocab_from_dataset(
+    train_ds,
+    test_ds,
+    output_path="/scratch/jliebl/Phonetics/out/vocab.json",
+    squish_diacritics=False,
+    diacritics=set()
+):
     """
     Build a vocab.json file from the 'sentence' field of train and test datasets.
     Each unique character becomes a vocabulary entry.
@@ -82,8 +88,32 @@ def build_vocab_from_dataset(train_ds, test_ds, output_path="/scratch/jliebl/Pho
     # Count all characters used in the dataset
     counter = Counter()
 
-    for text in all_text:
-        counter.update(list(text))
+    # original behavior
+    if not squish_diacritics:
+        for text in all_text:
+            counter.update(list(text))
+    else: # squish diacritics in with their preceding chars
+        for text in all_text:
+            
+            # get the individual chars
+            chars = list(text)
+            
+            # first char is presumably not a diacritic
+            final_chars = [chars[0]]
+            
+            # loop over rest of chars
+            for i in range(1, len(chars)):
+                
+                # if this char is a diacritic
+                if chars[i] in diacritics:
+                    # consider the previous character plus this diacritic as one character
+                    final_chars.append(chars[i-1] + chars[i])
+                else:
+                    # consider this an ordinary character
+                    final_chars.append(chars[i])
+                    
+            # update like before, but now some of the entries are two characters long
+            counter.update(final_chars)
 
     # Sorted list of unique characters
     vocab_chars = sorted(counter.keys())
