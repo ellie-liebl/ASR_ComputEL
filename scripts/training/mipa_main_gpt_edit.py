@@ -71,6 +71,8 @@ def build_vocab_from_dataset(
         train_ds (Dataset): HuggingFace Dataset for training
         test_ds (Dataset): HuggingFace Dataset for testing
         output_path (str): where to save the vocab.json
+        squish_diacritics (bool): whether to squish the diacritics in with the preceding characters
+        diacritics (set): the characters that should be considered diacritics
 
     Returns:
         dict: vocabulary dictionary mapping char -> int
